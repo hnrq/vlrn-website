@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
+import Player from './components/Player.svelte';
 
-	const song = new Audio('/assets/songs/drunken-sailor.mp3');
-	song.play();
+	const audio = new Audio('/assets/songs/drunken-sailor.mp3');
 </script>
 
 <svelte:head>
@@ -15,18 +15,21 @@
 <main>
 	<div class="letter" transition:fly={{ y: -40, duration: 1000 }}>
 		<img src="/assets/wax-seal.png" class="wax-seal" width={70} alt="Wax seal" />
-		<h1>VLRN</h1>
-		<p>Alas! Brave adventurer, </p>
+		<div class="title">
+			<h1>VLRN</h1>
+			<Player src="/assets/songs/drunken-sailor.mp3"/>
+		</div>
+		<p>Que pena! Valente aventureiro, </p>
 		<p>
-			You have met a sad fate. But do not despair, for the gods will bring you 
-			back into the world in exchange for a small sacrifice. Simply copy the 
-			URL and join our server at Veloren!
+			Você encontrou um destino triste. Mas não se desespere, pois os deuses lhe trarão
+			de volta ao mundo em troca de um pequeno sacrifício. Basta copiar o
+			URL e junte-se ao nosso servidor em Veloren!
 		</p>
 		<p>
-			Cheers, <br />
+			Abraços, <br />
 			hnrq
 		</p>
-		<input value="vlrn.hnrq.dev" disabled />
+		<input value="vlrn.duckdns.org" disabled />
 	</div>
 </main>
 
@@ -71,16 +74,23 @@
 		align-self: center;
 	}
 
+	
+	.title {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	h1 {
 		text-align: left;
 		font-family: 'Press Start 2P', cursive;
 		color: #4C2A12;
 		text-shadow: -2px 2px #f4912f;
-		margin-top: -8px;
 	}
 
 	p {
-		text-align: justify;
+		text-align: left;
 		margin: 8px 0;
 	}
 </style>
