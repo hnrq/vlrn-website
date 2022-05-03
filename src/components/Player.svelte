@@ -3,25 +3,19 @@
   import PlayIcon from '../icons/play.svg';
 
   export let src: string;
-  let audio = new Audio(src);
-  let isPlaying: boolean = false;
-  audio.volume = 0.5;
+  let audio, paused;
 
   const toggleAudio = () => {
-    if (audio.paused) {
-      audio.play();
-      isPlaying = true;
-    } else {
-      audio.pause();
-      isPlaying = false;
-    }
+    if (audio.paused) audio.play();
+    else audio.pause();
   };
 </script>
 
+<audio src={src} bind:this={audio} volume={0.5} autoplay bind:paused />
 <button on:click={toggleAudio}>
-  {#if isPlaying}
-  <PauseIcon height={24} width={24} viewBox="0 0 50 50" fill="rgba(0, 0, 0, 0.5)" />
-  {:else} <PlayIcon height={24} width={24} viewBox="0 0 50 50" fill="rgba(0, 0, 0, 0.5)" />
+  {#if paused}
+  <PlayIcon height={24} width={24} viewBox="0 0 50 50" fill="rgba(0, 0, 0, 0.5)" />
+  {:else} <PauseIcon height={24} width={24} viewBox="0 0 50 50" fill="rgba(0, 0, 0, 0.5)" />
   {/if}
 </button>
 
