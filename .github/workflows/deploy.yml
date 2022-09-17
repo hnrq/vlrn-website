@@ -3,6 +3,13 @@ on:
   push:
     branches:
       - main
+  
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: string
+        default: DEV
+        required: true
 jobs:
   deploy:
     name: Deploy
